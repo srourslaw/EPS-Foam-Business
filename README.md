@@ -4,12 +4,14 @@ An interactive, data-driven business intelligence dashboard for the EPS Foam Cut
 
 ## 🚀 Features
 
+- **Secure Authentication** - Email-based login system with protected routes
 - **Interactive Data Visualizations** - Charts powered by Recharts
 - **Multi-Page Navigation** - 11 comprehensive sections
 - **Responsive Design** - Works on desktop, tablet, and mobile
 - **Beautiful UI** - Light color scheme with smooth animations
 - **Real-Time Data** - All metrics pulled from comprehensive market research
 - **Full Report Download** - Export complete market research report as HTML
+- **Session Management** - Persistent login with localStorage
 
 ## 📊 Dashboard Sections
 
@@ -26,6 +28,26 @@ An interactive, data-driven business intelligence dashboard for the EPS Foam Cut
 11. **Action Plan** ✅ - Phase-by-phase implementation roadmap
 
 **All 11 dashboard sections are now fully implemented!**
+
+## 🔐 Authentication & Access
+
+The dashboard is protected with secure authentication. Only authorized users with valid credentials can access the dashboard.
+
+### Login Credentials
+
+**Email:** `admin@bluewaveintelligence.com`
+**Password:** `EPS2025!SecureAccess`
+
+⚠️ **Security Note**: These credentials are for internal use only. Do not share publicly. All dashboard pages are protected and require authentication.
+
+### How to Login
+
+1. Navigate to the live dashboard or run locally
+2. You'll be automatically redirected to the login page
+3. Enter the email and password above
+4. Click "Sign In" to access the dashboard
+5. Your session will be saved and persist across page refreshes
+6. Use the logout button in the navigation to sign out
 
 ## 🛠️ Installation & Setup
 
@@ -70,11 +92,12 @@ dashboard/
 │   └── index.html              # HTML template
 ├── src/
 │   ├── components/
-│   │   ├── Navigation.js       # Top navigation bar
+│   │   ├── Navigation.js       # Navigation with auth (user display, logout)
 │   │   └── MetricCard.js       # Reusable metric card component
 │   ├── data/
 │   │   └── businessData.js     # All data from master report
 │   ├── pages/
+│   │   ├── Login.js            # Authentication page
 │   │   ├── ExecutiveSummary.js
 │   │   ├── MarketAnalysis.js
 │   │   ├── CompetitiveLandscape.js
@@ -86,9 +109,10 @@ dashboard/
 │   │   ├── SWOTAnalysis.js
 │   │   ├── RiskAnalysis.js
 │   │   └── ActionPlan.js
-│   ├── App.js                  # Main app component with routing
+│   ├── App.js                  # Main app with auth & protected routes
 │   ├── index.js                # Entry point
 │   └── index.css               # Global styles
+├── .gitignore                  # Git ignore (node_modules, build, etc.)
 ├── package.json                # Dependencies
 └── README.md                   # This file
 ```
@@ -142,16 +166,30 @@ Creates optimized production build in `/build` directory.
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
+### GitHub Repository
 
-This project is configured for deployment on Vercel:
+**Repository URL**: [https://github.com/srourslaw/EPS-Foam-Business](https://github.com/srourslaw/EPS-Foam-Business)
 
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Vercel will automatically detect React and configure build settings
-4. Deploy with one click!
+The project is version-controlled with Git and hosted on GitHub. Any push to the `main` branch automatically triggers a deployment to Vercel.
 
-**Live Demo**: [https://vercel.com/hussein-srours-projects/eps-foam-business](https://vercel.com/hussein-srours-projects/eps-foam-business)
+### Vercel Deployment (Live & Auto-Deploy)
+
+**Project URL**: [https://vercel.com/hussein-srours-projects/eps-foam-business](https://vercel.com/hussein-srours-projects/eps-foam-business)
+
+**How it works:**
+1. Connected to GitHub repository
+2. Automatic deployments on push to `main` branch
+3. Vercel automatically detects React and configures build settings
+4. Live preview URLs for each deployment
+5. Production domain automatically updated
+
+**To deploy updates:**
+```bash
+git add .
+git commit -m "Your update description"
+git push origin main
+```
+Vercel will automatically build and deploy within 1-2 minutes.
 
 ### Other Options
 
@@ -217,6 +255,15 @@ npm install recharts@^2.10.3
 
 ## ✨ Recent Updates
 
+**November 2025 - Authentication & Deployment:**
+- ✅ Added secure email-based authentication system
+- ✅ Implemented protected routes for all dashboard pages
+- ✅ Added user session management with localStorage
+- ✅ Added user display and logout functionality (mobile + desktop)
+- ✅ Deployed to GitHub and Vercel with auto-deployment
+- ✅ Removed public demo credentials for enhanced security
+
+**Previous Updates:**
 - ✅ Fixed Competitor Lead Times chart
 - ✅ Completed full HTML report download (100% content coverage)
 - ✅ Added all sections 4-11 with complete subsections
@@ -228,12 +275,14 @@ npm install recharts@^2.10.3
 
 - [ ] Export to PDF functionality
 - [ ] Real-time data updates via API
-- [ ] User authentication for multi-user access
+- [ ] Multi-user roles and permissions (admin, viewer, editor)
 - [ ] Scenario modeling tool (adjust inputs, see outputs)
 - [ ] Print-optimized views
 - [ ] Dark mode toggle
 - [ ] Comparison mode (compare multiple scenarios)
 - [ ] Comments/annotations on charts
+- [ ] Password reset functionality
+- [ ] Activity logging and audit trail
 
 ## 📄 License
 
@@ -245,7 +294,8 @@ For questions or issues with the dashboard, contact the project maintainer.
 
 ---
 
-**Version**: 2.0
-**Last Updated**: November 2025
+**Version**: 2.1 (Authentication Update)
+**Last Updated**: November 19, 2025
 **Built With**: React ⚛️ | Recharts 📊 | Framer Motion 🎨
+**Deployed**: GitHub + Vercel (Auto-Deploy)
 **Generated with**: [Claude Code](https://claude.com/claude-code)

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Home, TrendingUp, Users, DollarSign, Target, Tag,
-  Settings, UserPlus, Shield, AlertTriangle, CheckSquare, Menu, X, ChevronLeft, ChevronRight
+  Settings, UserPlus, Shield, AlertTriangle, CheckSquare, Menu, X, ChevronLeft, ChevronRight, LogOut, User as UserIcon
 } from 'lucide-react';
 
 const navItems = [
@@ -19,7 +19,7 @@ const navItems = [
   { path: '/action-plan', label: 'Action Plan', icon: CheckSquare }
 ];
 
-const Navigation = () => {
+const Navigation = ({ user, onLogout }) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -119,6 +119,31 @@ const Navigation = () => {
                   </Link>
                 );
               })}
+              {/* Mobile Logout Button */}
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onLogout();
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px',
+                  borderRadius: '8px',
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  background: '#fee2e2',
+                  color: '#991b1b',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  gridColumn: '1 / -1'
+                }}
+              >
+                <LogOut size={16} />
+                <span>Logout ({user?.username})</span>
+              </button>
             </div>
           )}
         </div>
@@ -267,6 +292,95 @@ const Navigation = () => {
                 </Link>
               );
             })}
+          </div>
+
+          {/* User Info & Logout */}
+          <div style={{
+            marginTop: '24px',
+            paddingTop: '20px',
+            borderTop: '1px solid var(--border-light)'
+          }}>
+            {/* User Info */}
+            {!sidebarCollapsed && (
+              <div style={{
+                padding: '12px',
+                background: 'var(--bg-secondary)',
+                borderRadius: '12px',
+                marginBottom: '12px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    textTransform: 'uppercase'
+                  }}>
+                    {user?.username?.charAt(0) || 'U'}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <p style={{
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      color: 'var(--text-primary)',
+                      margin: 0,
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {user?.username}
+                    </p>
+                    <p style={{
+                      fontSize: '12px',
+                      color: 'var(--text-tertiary)',
+                      margin: '2px 0 0 0',
+                      textTransform: 'capitalize'
+                    }}>
+                      {user?.role || 'User'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Logout Button */}
+            <button
+              onClick={onLogout}
+              title={sidebarCollapsed ? 'Logout' : ''}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: sidebarCollapsed ? '14px' : '14px 16px',
+                fontSize: '15px',
+                fontWeight: '600',
+                width: '100%',
+                borderRadius: '12px',
+                background: '#fee2e2',
+                color: '#991b1b',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                justifyContent: sidebarCollapsed ? 'center' : 'flex-start'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#fecaca';
+                e.currentTarget.style.transform = 'translateX(4px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#fee2e2';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}
+            >
+              <LogOut size={20} style={{ flexShrink: 0 }} />
+              {!sidebarCollapsed && <span>Logout</span>}
+            </button>
           </div>
         </nav>
       </aside>
